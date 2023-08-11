@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import SubmitForm from './components/SubmitForm';
 import './App.css';
-
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
+  const [names, setNames] = useState([])
+  function renderName() {
+    return names.map(({ firstName, lastName }, index) => <li key={index}>{firstName} {lastName}</li>)
+  }
+  console.log("test rendername", renderName())
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SubmitForm names={names} setNames={setNames} />
+      <ul>
+        {renderName()}
+      </ul>
     </div>
   );
 }
